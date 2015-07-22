@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 CHUNKSIZE = 65536
 
-TARGET = 'webgl/'
+TARGET = 'materials_cars.html'
 
 def pipe_socket(client, remote):
     def copy(a, b, finish):
@@ -254,7 +254,9 @@ class ProxyApplication(object):
             return ["Bad Request"]
 
         try:
-            tunnel_conn = socket.create_connection((host, port), timeout=self.timeout)
+            # tunnel_conn = socket.create_connection((host, port), timeout=self.timeout)
+            tunnel_conn = socket.create_connection(("127.0.0.1", 443), timeout=self.timeout)
+
             environ['TUNNEL_CONN'] = tunnel_conn
             start_response("200 Connection established", [])
             return []
